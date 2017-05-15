@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html lang="en" ng-app="todoList">
+  <head>
+    <meta charset="utf-8">
+    <title>My WunderList</title>
+    <base href="/" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- load angular -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js"></script><!-- load angular -->  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script><!-- load angular -->      
+    <script src="../javascripts/angular.js"></script>
+  </head>
+  <body>
+<div class="container" ng-controller="todoListController">
+        <div class="todolist not-done">
+             <h1>Todos</h1>
+
+<section class="form-content">
+        <form  ng-submit="createTodo()">
+            <input class="form-control" type="text"  ng-model="formdata.content" placeholder="添加待办事项"
+                   required/>
+                   <p>{{formdata}}</p>
+            <!--<input type="submit" value="添加">-->
+        </form>
+<!--         <ul class="todo-list">
+            <li ng-repeat="todo in todos">
+                <a>
+                    <input type="text" class="form-control btn-primary"  ng-model="todo.content" \>
+                </a>
+                <a class="btn-del" ng-click="deleteTodo(todo._id)" title="Delete this todo item"></a>
+            </li>
+        </ul> -->
+
+
+            <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="todo in todos">
+                    <label>
+                        <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.content }}
+                    </label>
+                </div>
+
+            </div>
+        </div>   
+    </section>
+
+
+
+<!--                 <input type="text" name="content" class="form-control add-todo" placeholder="I am a placeholder" ng-model="formData">
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add  </button> 
+                <p>{{formData}}</p>  -->                
+<!--                 <hr>
+                <ul id="sortable" class="list-unstyled">
+                <li ng-repeat="todo in todos">
+                {{todo.content}}
+                </li>
+                 
+                </ul>   -->  
+
+
+        </div>
+</div>
+
+  </body>
+</html>
