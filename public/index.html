@@ -15,7 +15,7 @@
   <body>
 <div style="width:100%;text-align:center;margin:0 auto;">
   <div class="container" ng-controller="todoListController" ng-init="editableContent = {}">
-    <div class="col-md-6"">
+    <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
       <h2>ToDo App</h2>
       <!-- Form Starts Here -->
       <div class="form">
@@ -28,11 +28,17 @@
         </div><!-- /input-group -->
       </div>
       <hr/>
+
       <!-- Form Ends Here -->
 
-      <ul class="list-group" ng-show="todos.length > 0">
+      <ul class="list-group">
         <li class="list-group-item clearfix task" ng-repeat="todo in todos | filter:{completed:false}" ng-class="{disabled: todo.done}"> 
-          <p ng-hide="todo.editing"  class="lead">{{todo.content}}</p>
+         <!--  <p ng-hide="todo.editing"  class="lead">{{todo.content}}</p> -->
+          <span ng-hide="todo.editing" class="pull-left" >
+            <input type="checkbox" ng-click="doneTask(todo._id)"> {{ todo.content }}
+
+          </span>
+          
           <!-- <input ng-show="todo.editing" ng-model="todo.content" ng-blur="doneEditing() autofocus /"> -->
           <div>
             <div ng-show="todo.editing">
@@ -44,8 +50,6 @@
             <span ng-hide="todo.editing" class="pull-right">
               <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" 
                 ng-click="enableEdit(todo._id)"></span></button>
-              <button class="btn btn-primary btn-xs" ng-show="!todo.done"><span class="glyphicon glyphicon-ok" 
-                ng-click="doneTask(todo._id)"></span></button>
               <button class="btn btn-primary btn-xs" ng-show="todo.done"><span class="glyphicon glyphicon-repeat" 
                 ng-click="unDoneTask(todo._id)"></span></button>
               <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" 
@@ -55,15 +59,18 @@
         </li>
       </ul>
       <!-- Task List Ends Here -->
-    </div>
-    <div class="col-md-6">
         <div class="todolist">
-          <h1>Already Done</h1>
-            <ul id="done-items" class="list-unstyled" ng-repeat="todo in todos | filter:{completed:true}">
-                <li>{{todo.content}} <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>                 
+            <a href="#" ng-click=changeFlag()>Show completed to-dos</a>
+            <ul ng-show="showCompletedFlag" id="done-items" class="list-unstyled" ng-repeat="todo in todos | filter:{completed:true}">
+                <li>
+                <span class="pull-left" >
+                  <input type="checkbox" ng-click="doneTask(todo._id)"> {{ todo.content }}
+                </span>          
+                 <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo._id)"></span></button></li>                 
             </ul>
-         </div>
-    </div>    
+        </div>
+    </div>
+\   
   </div>
   <br/>
 

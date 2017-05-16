@@ -9,7 +9,7 @@ var Todo = require('../models/model');
 //get all todo
 router.get('/api/todos', function (req, res, next) {
         Todo
-        .find({ 'completed': 'false' })
+        .find()
         // .sort('-update_at')
         .exec(function(err, todos) {
 
@@ -18,20 +18,6 @@ router.get('/api/todos', function (req, res, next) {
                 res.send(err)
 
             res.json(todos); // return all todos in JSON format
-        });
-});
-
-router.get('/api/completed', function (req, res, next) {
-        Todo
-        .find({ 'completed': 'true' })
-        // .sort('-update_at')
-        .exec(function(err, completed) {
-
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-
-            res.json(completed); // return all todos in JSON format
         });
 });
 
@@ -82,7 +68,11 @@ router.put('/api/todo/get/:id', function (req, res, next) {
 
 router.put('/api/todo/done/:id', function (req, res, next) {
     Todo.findById(req.params.id, function (err, todo) {
-        todo.completed = true;
+        if(todo.completed){
+            todo.completed = false;
+        }else{
+           todo.completed = true; 
+        } ;
         todo.save(function (err, todo) {
             if (err) {
                 res.send(err);
