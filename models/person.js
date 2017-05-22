@@ -2,14 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
-var TodoSchema = new Schema(
+var PersonSchema = new Schema(
   {
-    content:String,
-    editing:{
-    	type:Boolean,
-    	default:false
-
-    }
+    name:String,
+    password:String,
 });
 /**
 TodoSchema.methods.dudify = function() {
@@ -33,8 +29,8 @@ TodoSchema.methods.dudify = function() {
 // the schema is useless so far
 // we need to create a model using it
 
-var DoneItem = mongoose.model('DoneItem', TodoSchema,'todos');
+var Person = mongoose.model('Person', PersonSchema,'persons');
 
 
 // make this available to our Node applications
-module.exports = DoneItem;
+module.exports = Person;

@@ -36,8 +36,6 @@ TodoSchema.methods.dudify = function() {
 // the schema is useless so far
 // we need to create a model using it
 var Todo = mongoose.model('Todo', TodoSchema);
-//var DoneItem = mongoose.model('DoneItem', TodoSchema);
-
 
 
 // make this available to our Node applications
