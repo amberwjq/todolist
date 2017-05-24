@@ -19,6 +19,7 @@ var todoList = angular.module('todoList', []);
 
 todoList.controller('todoListController',function todoListController($scope,$http)
 {
+    console.log('load controller');
     formdata={
                 content: ''
             };

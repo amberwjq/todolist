@@ -4,10 +4,15 @@ var mongoose = require('mongoose');
 // grab the Todo model
 var Todo = require('../models/model');
 
+router.get('/about', function(req, res){
+    console.log('angular应用首页的位置');
+    res.sendFile('welcome.html',{ root: "public" }); 
+});
 
 /* restful api */
 //get all todo
 router.get('/api/todos', function (req, res, next) {
+    console.log('get api todo');
         Todo
         .find()
         // .sort('-update_at')
@@ -132,51 +137,11 @@ router.put('/api/todo/edit/:id', function (req, res, next) {
                     if (err) {
                         res.send(err);
                     }
-                    console.log('WHOLE TODO ' + todos);
                     res.json(todos);
                 });
         })
     })
 });
-
-
-router.get('/', function(req, res){
-    res.sendfile('./public/index.html');    //angular应用首页的位置
-});
-
-
-
-// /*register return user info*/
-// router.post('/api/register', function (req, res, next) {
-//     var user = new User({
-//         username: req.body.username,
-//         password: req.body.password
-//     });
-//     user.save(function (err, todo) {
-//         if(err){
-//             res.send(err)
-//         }
-//         console.log(todo);
-//     })
-// });
-
-// // check user is exist
-// router.get('/api/user_exist', function (req, res, next) {
-
-// });
-// //login return user info
-// router.post('/api/login', function (req, res, next) {
-
-// });
-
-// //update user info
-// router.put('/api/change_username', function (req, res, next) {
-
-// });
-
-// router.put('/api/change_password', function (req, res, next) {
-
-// });
 
 module.exports = router;
 
