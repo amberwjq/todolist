@@ -28,10 +28,11 @@
         </div><!-- /input-group -->
       </div>
       <hr/>
+
       <!-- Form Ends Here -->
 
-      <ul class="list-group" ng-show="todos.length > 0">
-        <li class="list-group-item clearfix task" ng-repeat="todo in todos" ng-class="{disabled: todo.done}"> 
+      <ul class="list-group">
+        <li class="list-group-item clearfix task" ng-repeat="todo in todos | filter:{completed:false}" ng-class="{disabled: todo.done}"> 
           <p ng-hide="todo.editing"  class="lead">{{todo.content}}</p>
           <!-- <input ng-show="todo.editing" ng-model="todo.content" ng-blur="doneEditing() autofocus /"> -->
           <div>
@@ -45,9 +46,9 @@
               <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" 
                 ng-click="enableEdit(todo._id)"></span></button>
               <button class="btn btn-primary btn-xs" ng-show="!todo.done"><span class="glyphicon glyphicon-ok" 
-                ng-click="doneTask($index)"></span></button>
+                ng-click="doneTask(todo._id)"></span></button>
               <button class="btn btn-primary btn-xs" ng-show="todo.done"><span class="glyphicon glyphicon-repeat" 
-                ng-click="unDoneTask($index)"></span></button>
+                ng-click="unDoneTask(todo._id)"></span></button>
               <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" 
                 ng-click="deleteTodo(todo._id)"></span></button>
             </span>
@@ -55,7 +56,14 @@
         </li>
       </ul>
       <!-- Task List Ends Here -->
+        <div class="todolist">
+            <a href="#" ng-click=changeFlag()>Show completed to-dos</a>
+            <ul ng-show="showCompletedFlag" id="done-items" class="list-unstyled" ng-repeat="todo in todos | filter:{completed:true}">
+                <li>{{todo.content}} <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo._id)"></span></button></li>                 
+            </ul>
+        </div>
     </div>
+\   
   </div>
   <br/>
 

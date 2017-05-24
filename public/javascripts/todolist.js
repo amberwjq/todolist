@@ -19,9 +19,11 @@ var todoList = angular.module('todoList', []);
 
 todoList.controller('todoListController',function todoListController($scope,$http)
 {
+    console.log('load controller');
     formdata={
                 content: ''
             };
+    showCompletedFlag = true;      
     editableContent={
                 content: ''
             };       
@@ -35,16 +37,15 @@ todoList.controller('todoListController',function todoListController($scope,$htt
         .error(function(data) {
             console.log('Error: ' + data);
         });
-    $http.get('/api/completed')
-        .success(function(data) {
-            console.log('get doneItems')
-            $scope.doneItems = data;
-            console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });    
-
+   
+    $scope.changeFlag =function(){
+      if($scope.showCompletedFlag){
+        $scope.showCompletedFlag = false;
+      }
+      else {
+        $scope.showCompletedFlag =true;
+      };
+    };    
     // when submitting the add form, send the text to the node API
     $scope.createTodo = function() {
         $http.post('/api/todo', $scope.formdata)

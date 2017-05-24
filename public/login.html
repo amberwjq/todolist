@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html lang="en" ng-app="todoList">
+  <head>
+    <meta charset="utf-8">
+    <title>My WunderList</title>
+    <base href="/">
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- load angular -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js"></script><!-- load angular -->  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script><!-- load angular -->      
+    <script src="../javascripts/todolist.js"></script>
+  </head>
+  <body>
+ 	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+				  <form action="/user/login" method="post">
+					<input type="text" name="user" placeholder="Username">
+					<input type="password" name="password" placeholder="Password">
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+				  </form>					
+				  <div class="login-help">
+					<a href="/reg">Register</a> 
+				  </div>
+				</div>
+			</div>
+  </body>
+</html>
