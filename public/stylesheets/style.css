@@ -1,5 +1,6 @@
 body{
     background-color:#EEEEEE;
+    background: url(../img/bg.jpg) no-repeat center center scroll;
 }
 .todolist{
     background-color:#FFF;

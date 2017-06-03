@@ -17,9 +17,11 @@ var todoList = angular.module('todoList', []);
 // }]);
 
 
+
 todoList.controller('todoListController',function todoListController($scope,$http)
 {
-    console.log('load controller');
+    console.log('load todoListController');
+    orderProp ='name';
     formdata={
                 content: ''
             };
@@ -29,6 +31,15 @@ todoList.controller('todoListController',function todoListController($scope,$htt
             };       
     // $scope.todos=[{"_id":"590c075f11ce04c78fd3266a","content":"buy milk","category":"family"}]
     // when landing on the page, get all todos and show them
+        $http.get('/user/api/get')
+        .success(function(data) {
+            $scope.user_name = data;
+            console.log('current user is ' + data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
     $http.get('/api/todos')
         .success(function(data) {
             $scope.todos = data;
@@ -63,6 +74,7 @@ todoList.controller('todoListController',function todoListController($scope,$htt
             .success(function(data) {
                 $scope.formdata={};
                 $scope.todos = data;
+                console.log('controller returned data');
                 console.log(data);
             })
             .error(function(data) {
@@ -81,6 +93,7 @@ todoList.controller('todoListController',function todoListController($scope,$htt
       
     };
     $scope.enableEdit = function(id){
+      console.log('enableEdit');
       $http.put('/api/todo/get/' + id)
       .success(function(data){
               $scope.todos = data;

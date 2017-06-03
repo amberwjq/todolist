@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var TodoSchema = new Schema(
   {
     content:String,
+     updated_at: { type: Date, default: Date.now },
     editing:{
     	type:Boolean,
     	default:false
@@ -12,27 +13,27 @@ var TodoSchema = new Schema(
     completed:{
       type:Boolean,
       default:false
-    },    
+    },  
+     _creator : { type: Schema.Types.ObjectId, ref: 'Person' },
 });
-/**
-TodoSchema.methods.dudify = function() {
-  // add some stuff to the users name
-  this.name = this.name + '-dude'; 
 
-  return this.name;
-};
-**/
 
-// // on every save, add the date
-// TodoSchema.pre('save', function(next) {
-//   // get the current date
-//   var currentDate = new Date();
+
+var TodosSchema = new Schema(
   
-//   // change the updated_at field to current date
-//   this.updated_at = currentDate;
+)
 
-//   next();
-// });
+
+// on every save, add the date
+TodoSchema.pre('save', function(next) {
+  // get the current date
+  var currentDate = new Date();
+  
+  // change the updated_at field to current date
+  this.updated_at = currentDate;
+
+  next();
+});
 // the schema is useless so far
 // we need to create a model using it
 var Todo = mongoose.model('Todo', TodoSchema);

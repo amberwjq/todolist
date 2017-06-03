@@ -57,7 +57,7 @@
       </ul>
       <!-- Task List Ends Here -->
         <div class="todolist">
-            <a href="#" ng-click=changeFlag()>Show completed to-dos</a>
+            <a  ng-click=changeFlag()>Show completed to-dos</a>
             <ul ng-show="showCompletedFlag" id="done-items" class="list-unstyled" ng-repeat="todo in todos | filter:{completed:true}">
                 <li>{{todo.content}} <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo._id)"></span></button></li>                 
             </ul>

@@ -2,10 +2,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
+
 var PersonSchema = new Schema(
   {
     name:String,
     password:String,
+    todos:[{ type: Schema.Types.ObjectId, ref: 'Todo' }]
+   
 });
 /**
 TodoSchema.methods.dudify = function() {

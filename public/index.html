@@ -12,11 +12,39 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script><!-- load angular -->      
     <script src="../javascripts/todolist.js"></script>
   </head>
-  <body>
+  <body ng-controller="todoListController" ng-init="editableContent = {}">
+ <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header pull-right">            
+          <p class="navbar-text">
+            <b> Welcome {{user_name}} </b>
+
+          </p>          
+        </div>
+          
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/user/logout">Switch Account</a></li>
+            <li><a href="/user/logout">Logout</a></li>
+            
+          </ul>
+        </div>   
+    </div>
+  </div>
+
+
+
 <div style="width:100%;text-align:center;margin:0 auto;">
-  <div class="container" ng-controller="todoListController" ng-init="editableContent = {}">
+  <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
       <h2>ToDo App</h2>
+      <p class="pull-right">
+                <select ng-model="orderProp" >
+        				        <option value "">Sort</option>
+    					        <option value="content">Alphabat</option>
+        				        <option value="time">Latest</option>
+						    </select> 
+            </p>    
       <!-- Form Starts Here -->
       <div class="form">
         <div class="input-group">
@@ -31,12 +59,13 @@
 
       <!-- Form Ends Here -->
 
+
+        
       <ul class="list-group">
-        <li class="list-group-item clearfix task" ng-repeat="todo in todos | filter:{completed:false}" ng-class="{disabled: todo.done}"> 
+        <li class="list-group-item clearfix task" ng-repeat="todo in todos | filter:{completed:false} | orderBy:orderProp" ng-class="{disabled: todo.done}"> 
          <!--  <p ng-hide="todo.editing"  class="lead">{{todo.content}}</p> -->
           <span ng-hide="todo.editing" class="pull-left" >
             <input type="checkbox" ng-click="doneTask(todo._id)"> {{ todo.content }}
-
           </span>
           
           <!-- <input ng-show="todo.editing" ng-model="todo.content" ng-blur="doneEditing() autofocus /"> -->
@@ -60,7 +89,7 @@
       </ul>
       <!-- Task List Ends Here -->
         <div class="todolist">
-            <a href="#" ng-click=changeFlag()>Show completed to-dos</a>
+            <a  ng-click=changeFlag()>Show completed to-dos</a>
             <ul ng-show="showCompletedFlag" id="done-items" class="list-unstyled" ng-repeat="todo in todos | filter:{completed:true}">
                 <li>
                 <span class="pull-left" >
@@ -70,7 +99,7 @@
             </ul>
         </div>
     </div>
-\   
+  
   </div>
   <br/>
 
