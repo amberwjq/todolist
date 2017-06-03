@@ -2,6 +2,7 @@
 A todo application using the MEAN stack that user can create,edit,delete or mark as completed their todo item.
 
 This application store todos and user infomation in a MongoDb using Mongoose,uses the Express framework,create a RESTful Node API and used Angular for the frontend and to access the API.
+
 It also has multi-user and authentication feature.
 
 Main Welcome Page
@@ -12,9 +13,11 @@ User can edit and delete todo item
 [![Screen Shot 2017-05-23 at 9.58.03 PM.png](https://s12.postimg.org/ynodzy2gt/Screen_Shot_2017-05-23_at_9.58.03_PM.png)](https://postimg.org/image/rkgikbx15/)
 
 List page will show the current user and his todo list.
-User can sort his list alphabetically or by timestamp.
-THis page has put back items from completed-list to to-do list
-[![Screen Shot 2017-06-03 at 3.55.50 PM.png](https://s29.postimg.org/4uyaiui8n/Screen_Shot_2017-06-03_at_3.55.50_PM.png)](https://postimg.org/image/caxk4n5xv/)
 
-User can switch to another account.
+User can sort his list alphabetically or by timestamp.
+
+User can also pull back items from completed-list to to-do list
+[![Screen Shot 2017-06-03 at 4.10.02 PM.png](https://s11.postimg.org/f69mry0o3/Screen_Shot_2017-06-03_at_4.10.02_PM.png)](https://postimg.org/image/z0voe2fvj/)
+
+User can switch to another account and list page will another account's todo list.
 [![Screen Shot 2017-06-03 at 4.03.16 PM.png](https://s14.postimg.org/8rmlu2kup/Screen_Shot_2017-06-03_at_4.03.16_PM.png)](https://postimg.org/image/lvs66rcwd/)
