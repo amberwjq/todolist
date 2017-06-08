@@ -18,10 +18,22 @@ var todoList = angular.module('todoList', []);
 
 
 
+
 todoList.controller('todoListController',function todoListController($scope,$http)
 {
     console.log('load todoListController');
-    orderProp ='name';
+        orderProp ='name';
+    $scope.option = ['Sort Alphabetically','Sort by Creation Date'];
+    $scope.itemSelected =function(item){
+        if(item == 'Sort Alphabetically'){
+            item = 'content';
+        };
+        if(item == 'Sort by Creation Date'){
+            item = 'time';
+        };        
+        $scope.orderProp=item;
+
+    };
     formdata={
                 content: ''
             };

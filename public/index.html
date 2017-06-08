@@ -5,21 +5,28 @@
     <meta charset="utf-8">
     <title>My WunderList</title>
     <base href="/" />
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+ 
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script><!-- load angular -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js"></script><!-- load angular -->  
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script><!-- load angular -->      
-    <script src="../javascripts/todolist.js"></script>
+       <script src="../javascripts/todolist.js"></script>
+        <!--<script type="text/javascript" src="../javascripts/jquery-3.2.1.min.js"></script>-->
+    <script type="text/javascript">
+$('#demolist li').on('click', function(){
+    $('#datebox').val($(this).text());
+});
+
+ </script>
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css" />   
   </head>
   <body ng-controller="todoListController" ng-init="editableContent = {}">
  <div class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header pull-right">            
           <p class="navbar-text">
-            <b> Welcome {{user_name}} </b>
-
-          </p>          
+            <b> Welcome {{user_name}} </b>    
         </div>
           
         <div class="navbar-collapse collapse">
@@ -38,13 +45,7 @@
   <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
       <h2>ToDo App</h2>
-      <p class="pull-right">
-                <select ng-model="orderProp" >
-        				        <option value "">Sort</option>
-    					        <option value="content">Alphabat</option>
-        				        <option value="time">Latest</option>
-						    </select> 
-            </p>    
+  
       <!-- Form Starts Here -->
       <div class="form">
         <div class="input-group">
@@ -56,12 +57,20 @@
         </div><!-- /input-group -->
       </div>
       <hr/>
-
       <!-- Form Ends Here -->
 
 
-        
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+    <span class="glyphicon glyphicon-sort" ></span></button>
+    <ul class="dropdown-menu" >
+      <li ng-repeat="a in option"><a href="#" ng-click="itemSelected(a)">{{a}}</a></li>
+     
+    </ul>
+  </div>
+
       <ul class="list-group">
+       
         <li class="list-group-item clearfix task" ng-repeat="todo in todos | filter:{completed:false} | orderBy:orderProp" ng-class="{disabled: todo.done}"> 
          <!--  <p ng-hide="todo.editing"  class="lead">{{todo.content}}</p> -->
           <span ng-hide="todo.editing" class="pull-left" >
@@ -72,9 +81,9 @@
           <div>
             <div ng-show="todo.editing">
               <input type="text" class="form-control" ng-model="editableContent.content">
-              <a href="#" ng-click="doneEditing(todo._id)">Save</a>
+              <a href="/list" ng-click="doneEditing(todo._id)">Save</a>
               or
-              <a href="#" ng-click="doneEditing(todo._id)">Cancel</a>
+              <a href="/list" ng-click="doneEditing(todo._id)">Cancel</a>
             </div>
             <span ng-hide="todo.editing" class="pull-right">
               <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" 
@@ -104,4 +113,5 @@
   <br/>
 
   </body>
+
 </html>

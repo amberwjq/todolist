@@ -170,7 +170,7 @@ router.put('/api/todo/edit/:id', function (req, res, next) {
             }
             console.log('updated todo is ' + todo);
             Todo
-                .find()
+                .find({'_creator': req.session.user._id})
                 .sort('-update_at') //更加日期排序
                 .exec(function (err, todos) {
                     if (err) {
